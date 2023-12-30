@@ -1,0 +1,35 @@
+using UnityEngine;
+
+public class CameraSwitcher : MonoBehaviour
+{
+    public Camera firstPersonCamera;
+    public Camera thirdPersonCamera;
+
+    void Start()
+    {
+        // Ensure the cameras are initially set to the correct state
+        SetCamerasActive(true, false);
+    }
+
+    void Update()
+    {
+        // Toggle between first and third person on the 'P' key press
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            ToggleCameras();
+        }
+    }
+
+    void ToggleCameras()
+    {
+        // Toggle the active state of the cameras
+        bool isFirstPersonActive = firstPersonCamera.enabled;
+        SetCamerasActive(!isFirstPersonActive, isFirstPersonActive);
+    }
+
+    void SetCamerasActive(bool firstPersonActive, bool thirdPersonActive)
+    {
+        firstPersonCamera.enabled = firstPersonActive;
+        thirdPersonCamera.enabled = thirdPersonActive;
+    }
+}
